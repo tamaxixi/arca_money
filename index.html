@@ -2724,14 +2724,14 @@ Contoh: kopi 25rb qris, transport ngajar 15rb cc, netflix 54rb cc"></textarea>
         return 'Makan & Minum';
       }
 
-      // Transport Lainnya
-      if (/\b(grab|gojek|taxi|bensin|parkir|toll|tol|busway|kereta|mrt|ojek|indrive|kai|bensin|pertalite|pertamax|solar|tj|angkot|commuter)\b/.test(lower)) {
-        return 'Transport Lainnya';
-      }
-
       // Transport Ngajar
       if (/\b(grab ngajar|gojek ngajar|taxi ngajar|bensin ngajar|parkir ngajar|toll ngajar|tol ngajar|busway ngajar|kereta ngajar|mrt ngajar|ojek ngajar|indrive ngajar|kai ngajar|bensin ngajar|pertalite ngajar|pertamax ngajar|solar ngajar|tj ngajar|angkot ngajar|commuter ngajar|brt ngajar)\b/.test(lower)) {
         return 'Transport Ngajar';
+      }
+
+      // Transport Lainnya
+      if (/\b(grab|gojek|taxi|bensin|parkir|toll|tol|busway|kereta|mrt|ojek|indrive|kai|bensin|pertalite|pertamax|solar|tj|angkot|commuter)\b/.test(lower)) {
+        return 'Transport Lainnya';
       }
 
       // Belanja
@@ -4911,6 +4911,44 @@ Contoh: kopi 25rb qris, transport ngajar 15rb cc, netflix 54rb cc"></textarea>
 
       renderReports();
     }
+    
+    function migrateCategories() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+
+    if (!stored) return;
+
+    try {
+        const data = JSON.parse(stored);
+
+        if (!data.transactions) return;
+
+        let changed = false;
+
+        data.transactions = data.transactions.map(tx => {
+            if (tx.category === 'Transport') {
+                changed = true;
+
+                return {
+                    ...tx,
+                    category: 'Transport Lainnya'
+                };
+            }
+
+            return tx;
+        });
+
+        if (changed) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            console.log('Migration kategori Transport berhasil.');
+        }
+
+    } catch (error) {
+        console.error('Gagal melakukan migration kategori:', error);
+    }
+    }
+
+  migrateCategories();  
+
   </script>
 </body>
 
