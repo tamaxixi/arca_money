@@ -1551,7 +1551,7 @@
 
         <div class="chat-input-wrapper">
           <textarea id="chatInput" class="chat-textarea" placeholder="Tulis pengeluaran, pemasukan, hutang, atau tabunganmu...
-Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
+Contoh: kopi 25rb qris, transport ngajar 15rb cc, netflix 54rb cc"></textarea>
         </div>
 
         <div class="chat-actions-bar">
@@ -1567,8 +1567,8 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
         <!-- Quick Sample Prompts -->
         <div class="chat-suggestions">
           <div class="chat-suggestions-title">Coba klik contoh format:</div>
-          <div class="prompt-chip" data-text="kopi 25rb qris, transport 15rb cc, netflix 54rb cc">
-            ☕ "kopi 25rb qris, transport 15rb cc, netflix 54rb cc"
+          <div class="prompt-chip" data-text="kopi 25rb qris, transport ngajar 15rb cc, netflix 54rb cc">
+            ☕ "kopi 25rb qris, transport ngajar 15rb cc, netflix 54rb cc"
           </div>
           <div class="prompt-chip" data-text="gaji 5jt bca, uang jajan 500rb cash, andi bayar hutang 200rb bca">
             💰 "gaji 5jt bca, uang jajan 500rb cash, andi bayar hutang 200rb bca"
@@ -2489,7 +2489,7 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
           date: formatDateOffset(0),
           description: 'Bensin Pertalite Motor',
           amount: 35000,
-          category: 'Transport',
+          category: 'Transport Lainnya',
           paymentMethod: 'Cash',
           isSample: true,
           createdAt: new Date().toISOString()
@@ -2522,7 +2522,7 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
           date: formatDateOffset(2),
           description: 'Grab ke Kantor',
           amount: 24000,
-          category: 'Transport',
+          category: 'Transport Lainnya',
           paymentMethod: 'GoPay',
           isSample: true,
           createdAt: new Date().toISOString()
@@ -2724,7 +2724,7 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
         return 'Makan & Minum';
       }
 
-      // Transport Lain
+      // Transport Lainnya
       if (/\b(grab|gojek|taxi|bensin|parkir|toll|tol|busway|kereta|mrt|ojek|indrive|kai|bensin|pertalite|pertamax|solar|tj|angkot|commuter)\b/.test(lower)) {
         return 'Transport Lainnya';
       }
@@ -3049,7 +3049,7 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
                 <label class="form-label">Kategori</label>
                 <select class="form-control prev-field" data-field="category" data-index="${index}">
                   <option value="Makan & Minum" ${item.category === 'Makan & Minum' ? 'selected' : ''}>Makan & Minum</option>
-                  <option value="Transport" ${item.category === 'Transport' ? 'selected' : ''}>Transport</option>
+                  <option value="Transport Lainnya" ${item.category === 'Transport Lainnya' ? 'selected' : ''}>Transport Lainnya</option>
                   <option value="Transport Ngajar" ${item.category === 'Transport Ngajar' ? 'selected' : ''}>Transport Ngajar</option>
                   <option value="Belanja" ${item.category === 'Belanja' ? 'selected' : ''}>Belanja</option>
                   <option value="Make Up" ${item.category === 'Make Up' ? 'selected' : ''}>Make Up</option>
@@ -3602,7 +3602,7 @@ Contoh: kopi 25rb qris, transport 15rb cc, netflix 54rb cc"></textarea>
       // Donut Chart: Kategori Pengeluaran
       const catTotals = {
         'Makan & Minum': 0,
-        'Transport': 0,
+        'Transport Lainnya': 0,
         'Transport Ngajar': 0,
         'Belanja': 0,
         'Make Up': 0,
